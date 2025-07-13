@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Soccer Training | Where Dreams Take Flight</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c5530;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '⚽';
+            font-size: 1.5rem;
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2c5530;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(44, 85, 48, 0.7), rgba(44, 85, 48, 0.7)), url('https://static.wixstatic.com/media/531625_1560b3e681f743e896c5c5c3d701d371~mv2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section h2 {
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            color: #2c5530;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #ff6b35;
+        }
+
+        /* Programs Section */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(44, 85, 48, 0.1);
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .program-card h3 {
+            color: #2c5530;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .program-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .program-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .program-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .program-features li::before {
+            content: '⚽';
+            position: absolute;
+            left: 0;
+            color: #ff6b35;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 5rem 0;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .about-text h2::after {
+            left: 0;
+            transform: none;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            background: linear-gradient(rgba(44, 85, 48, 0.3), rgba(44, 85, 48, 0.3)), url('https://static.wixstatic.com/media/531625_e32b03ce75a048679d647ab25132413d~mv2.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Registration Section */
+        .events {
+            background: linear-gradient(rgba(44, 85, 48, 0.9), rgba(44, 85, 48, 0.9)), url('https://static.wixstatic.com/media/531625_734220f92ec743e090de6b96a8330cb1~mv2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 5rem 0;
+        }
+
+        .register-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .register-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .register-intro h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ff6b35;
+        }
+
+        .register-intro p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .registration-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .register-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .register-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .register-card.featured {
+            border-color: #ff6b35;
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff6b35;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .register-card h3 {
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .register-card p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .register-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .register-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .register-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        .register-btn {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            width: 100%;
+        }
+
+        .register-btn:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info h3 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image {
+                height: 250px;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Total Soccer Training</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#register">Register</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Where Dreams Take Flight</h1>
+            <p>Join us for a summer of soccer skill-building and fun! Prepare to experience high-quality coaching and memorable moments on the field.</p>
+            <a href="#programs" class="cta-button">Explore Programs</a>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="section">
+        <h2>Our Programs</h2>
+        <div class="programs-grid">
+            <div class="program-card fade-in">
+                <h3>Youth Development</h3>
+                <p>Comprehensive training program designed for young athletes aged 6-12 to develop fundamental soccer skills.</p>
+                <ul class="program-features">
+                    <li>Basic ball control and dribbling</li>
+                    <li>Passing and receiving techniques</li>
+                    <li>Team coordination and sportsmanship</li>
+                    <li>Fun-focused learning environment</li>
+                </ul>
+            </div>
+            <div class="program-card fade-in">
+                <h3>Competitive Training</h3>
+                <p>Advanced program for serious players aged 13-18 looking to take their game to the next level.</p>
+                <ul class="program-features">
+                    <li>Advanced tactical training</li>
+                    <li>Position-specific skill development</li>
+                    <li>Physical conditioning</li>
+                    <li>Mental preparation and strategy</li>
+                </ul>
+            </div>
+            <div class="program-card fade-in">
+                <h3>Summer Camps</h3>
+                <p>Intensive week-long camps combining skill development with fun activities and team building.</p>
+                <ul class="program-features">
+                    <li>Daily training sessions</li>
+                    <li>Scrimmages and mini-tournaments</li>
+                    <li>Guest coach workshops</li>
+                    <li>Awards and recognition</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-text fade-in">
+                <h2>Get to Know Us</h2>
+                <p>Total Soccer Training, nestled in the heart of Frisco, Texas, is dedicated to shaping young athletes through comprehensive soccer programs.</p>
+                <p>We strive to provide a nurturing environment that fosters growth, teamwork, and a love for the beautiful game. Our coaches are committed to enhancing each player's skills and passion for soccer.</p>
+                <p>With years of experience and a proven track record of success, we're proud to be the premier soccer training destination in the area.</p>
+            </div>
+            <div class="about-image fade-in">
+                <!-- Image background is set via CSS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="register" class="events">
+        <div class="section">
+            <h2>Register Now</h2>
+            <div class="register-content">
+                <div class="register-intro fade-in">
+                    <h3>Join Our Soccer Training Programs</h3>
+                    <p>Take the first step towards soccer excellence. Our comprehensive programs are designed to develop skills, build confidence, and foster a lifelong love for the beautiful game.</p>
+                </div>
+                <div class="registration-options">
+                    <div class="register-card fade-in">
+                        <h3>Summer Soccer Camp</h3>
+                        <div class="price">TBD</div>
+                        <p>Intensive 2-week program</p>
+                        <ul class="register-features">
+                            <li>Daily training sessions</li>
+                            <li>Skills development workshops</li>
+                            <li>Team building activities</li>
+                            <li>Tournament participation</li>
+                        </ul>
+                        <button class="register-btn" onclick="registerForProgram('Summer Camp')">Register Now</button>
+                    </div>
+                    <div class="register-card featured fade-in">
+                        <div class="popular-badge">Most Popular</div>
+                        <h3>Season Training</h3>
+                        <div class="price">TBD</div>
+                        <p>Full season development program</p>
+                        <ul class="register-features">
+                            <li>12-week training program</li>
+                            <li>Professional coaching staff</li>
+                            <li>Position-specific training</li>
+                            <li>Performance tracking</li>
+                        </ul>
+                        <button class="register-btn" onclick="registerForProgram('Season Training')">Register Now</button>
+                    </div>
+                    <div class="register-card fade-in">
+                        <h3>Private Coaching</h3>
+                        <div class="price">TBD</div>
+                        <p>One-on-one skill development</p>
+                        <ul class="register-features">
+                            <li>Personalized training plan</li>
+                            <li>Flexible scheduling</li>
+                            <li>Individual skill assessment</li>
+                            <li>Progress monitoring</li>
+                        </ul>
+                        <button class="register-btn" onclick="registerForProgram('Private Coaching')">Register Now</button>
+                    </div>
+                </div>
+                <div class="contact-info fade-in">
+                    <h3>Questions? Get in Touch</h3>
+                    <p>Call us at <strong>(214) 555-0123</strong> or email <strong>info@totalsoccertraining.com</strong></p>
+                    <p>Located in Frisco, Texas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Total Soccer Training. All rights reserved.</p>
+            <p>Located in Frisco, Texas | Building Champions On and Off the Field</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add active navigation highlighting
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add some interactive elements
+        document.querySelectorAll('.program-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Registration functionality
+        function registerForProgram(program) {
+            // Create a modal or redirect to registration form
+            const modal = document.createElement('div');
+            modal.innerHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 10000;">
+                    <div style="background: white; padding: 2rem; border-radius: 15px; max-width: 500px; width: 90%;">
+                        <h3 style="color: #2c5530; margin-bottom: 1rem;">Register for ${program}</h3>
+                        <p style="margin-bottom: 1.5rem; color: #666;">Thank you for your interest! Please fill out the form below to register.</p>
+                        <form style="display: flex; flex-direction: column; gap: 1rem;">
+                            <input type="text" placeholder="Player's Name" style="padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                            <input type="email" placeholder="Parent's Email" style="padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                            <input type="tel" placeholder="Phone Number" style="padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                            <input type="number" placeholder="Player's Age" style="padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                            <textarea placeholder="Additional Notes" style="padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; resize: vertical; min-height: 80px;"></textarea>
+                            <div style="display: flex; gap: 1rem;">
+                                <button type="submit" style="flex: 1; background: #ff6b35; color: white; border: none; padding: 0.8rem; border-radius: 8px; cursor: pointer;">Submit Registration</button>
+                                <button type="button" class="cancel-btn" style="flex: 1; background: #ccc; color: #333; border: none; padding: 0.8rem; border-radius: 8px; cursor: pointer;">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            
+            // Handle cancel button
+            modal.querySelector('.cancel-btn').addEventListener('click', function() {
+                modal.remove();
+            });
+            
+            // Handle form submission
+            modal.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Registration submitted! We will contact you soon.');
+                modal.remove();
+            });
+        }
+    </script>
+</body>
+</html>
